@@ -7,8 +7,8 @@ This module lets you practice:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Patsy.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import math
@@ -40,7 +40,7 @@ def main():
 def run_test_generate_points_on_circle():
     """ Tests the   generate_points_on_circle   function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # done: 2. Implement this TEST function.
     #   It TESTS the  generate_points_on_circle  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test (that YOU write).
     #
@@ -63,6 +63,15 @@ def run_test_generate_points_on_circle():
                 rg.Point(112.5, 28.3)]
     circle = rg.Circle(rg.Point(100, 50), 25)
     answer = generate_points_on_circle(circle, 6)
+    print('Expected:', expected)
+    print('Actual:  ', answer)
+
+    expected = [rg.Point(150., 300.),
+                rg.Point(100., 350.),
+                rg.Point(50., 300.),
+                rg.Point(100., 250.)]
+    circle = rg.Circle(rg.Point(100, 300), 50)
+    answer = generate_points_on_circle(circle, 4)
 
     print('Expected:', expected)
     print('Actual:  ', answer)
@@ -225,6 +234,14 @@ def draw_points_on_circle(window, circle, number_of_points, color):
     #
     # Your professor may do this exercise with you as "live coding".
     # -------------------------------------------------------------------------
+    circle.attach_to(window)
+    points = generate_points_on_circle(circle,number_of_points)
+    for k in range(number_of_points):
+        c = rg.Circle(points[k],10)
+        c.attach_to(window)
+        c.fill_color=color
+        points[k].attach_to(window)
+    window.render()
 
 
 def run_test_pizza():
